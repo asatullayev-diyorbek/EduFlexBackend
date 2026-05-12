@@ -12,6 +12,9 @@ DEBUG = os.getenv('DEBUG', 'True') == 'True'
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
 
 INSTALLED_APPS = [
+    'unfold',
+    'unfold.contrib.filters',
+    'unfold.contrib.forms',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -77,6 +80,7 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
@@ -101,3 +105,121 @@ CORS_ALLOWED_ORIGINS = os.getenv(
     'http://localhost:5173,http://127.0.0.1:5173'
 ).split(',')
 CORS_ALLOW_CREDENTIALS = True
+
+# ── Django Unfold ─────────────────────────────────────────────────
+UNFOLD = {
+    "SITE_TITLE": "EduFlex Admin",
+    "SITE_HEADER": "EduFlex",
+    "SITE_SUBHEADER": "Boshqaruv Paneli",
+    "SITE_URL": "/",
+    "SITE_ICON": None,
+    "SITE_LOGO": None,
+    "SITE_SYMBOL": "school",
+    "SHOW_HISTORY": True,
+    "SHOW_VIEW_ON_SITE": False,
+    "ENVIRONMENT": "config.admin_env",
+    "COLORS": {
+        "font": {
+            "subtle-light": "107 114 128",
+            "subtle-dark": "156 163 175",
+            "default-light": "75 85 99",
+            "default-dark": "209 213 219",
+            "important-light": "17 24 39",
+            "important-dark": "243 244 246",
+        },
+        "primary": {
+            "50":  "240 249 255",
+            "100": "224 242 254",
+            "200": "186 230 253",
+            "300": "125 211 252",
+            "400": "56 189 248",
+            "500": "14 165 233",
+            "600": "2 132 199",
+            "700": "3 105 161",
+            "800": "7 89 133",
+            "900": "12 74 110",
+            "950": "8 47 73",
+        },
+    },
+    "SIDEBAR": {
+        "show_search": True,
+        "show_all_applications": False,
+        "navigation": [
+            {
+                "title": "Asosiy",
+                "separator": False,
+                "items": [
+                    {
+                        "title": "Dashboard",
+                        "icon": "dashboard",
+                        "link": "/django-admin/",
+                    },
+                ],
+            },
+            {
+                "title": "Foydalanuvchilar",
+                "separator": True,
+                "items": [
+                    {
+                        "title": "Barcha foydalanuvchilar",
+                        "icon": "group",
+                        "link": "/django-admin/users/user/",
+                        "permission": "config.admin_permissions.is_admin",
+                    },
+                ],
+            },
+            {
+                "title": "Testlar",
+                "separator": True,
+                "items": [
+                    {
+                        "title": "Testlar",
+                        "icon": "quiz",
+                        "link": "/django-admin/tests_app/test/",
+                    },
+                    {
+                        "title": "Savollar",
+                        "icon": "help_outline",
+                        "link": "/django-admin/tests_app/question/",
+                    },
+                    {
+                        "title": "Urinishlar",
+                        "icon": "assignment_turned_in",
+                        "link": "/django-admin/tests_app/attempt/",
+                    },
+                    {
+                        "title": "Javoblar",
+                        "icon": "check_circle",
+                        "link": "/django-admin/tests_app/answer/",
+                    },
+                ],
+            },
+            {
+                "title": "Topshiriqlar",
+                "separator": True,
+                "items": [
+                    {
+                        "title": "Topshiriqlar",
+                        "icon": "assignment",
+                        "link": "/django-admin/assignments/assignment/",
+                    },
+                    {
+                        "title": "Topshiriq vazifalari",
+                        "icon": "task",
+                        "link": "/django-admin/assignments/assignmenttask/",
+                    },
+                    {
+                        "title": "Yuborilganlar",
+                        "icon": "send",
+                        "link": "/django-admin/assignments/submission/",
+                    },
+                    {
+                        "title": "Javoblar",
+                        "icon": "rate_review",
+                        "link": "/django-admin/assignments/taskresponse/",
+                    },
+                ],
+            },
+        ],
+    },
+}
